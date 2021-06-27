@@ -10,11 +10,11 @@ pool:
   name: Default
 
 steps:
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
+  - script: |
+      bb stack:sync
+    displayName: 'Sync with remote'
 
   - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
+      bb native:executable
 
-    displayName: 'Run a multi-line script'
+    displayName: 'Create an artifact to deploy'
