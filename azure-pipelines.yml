@@ -18,13 +18,13 @@ steps:
       bb stack:sync
     displayName: 'Sync with remote'
 
-  - task: Cache@2
-    inputs:
-      key: 'yarn | "$(Agent.OS)" | infra/yarn.lock'
-      restoreKeys: |
-        yarn | "$(Agent.OS)"
-      path: $(YARN_CACHE_FOLDER)
-    displayName: Cache Yarn packages
+  # - task: Cache@2
+  #   inputs:
+  #     key: 'yarn | "$(Agent.OS)" | infra/yarn.lock'
+  #     restoreKeys: |
+  #       yarn | "$(Agent.OS)"
+  #     path: $(YARN_CACHE_FOLDER)
+  #   displayName: Cache Yarn packages
 
   - script: |
       cd infra && yarn --frozen-lockfile
