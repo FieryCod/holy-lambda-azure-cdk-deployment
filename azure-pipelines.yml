@@ -39,5 +39,5 @@ steps:
     displayName: 'GraalVM native image compile'
 
   - script: |
-      cd infra && cdk deploy
+      cd infra && cdk deploy --ci --require-approval never
     displayName: 'CDK deploy'
