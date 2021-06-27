@@ -11,11 +11,23 @@ pool:
 
 variables:
   HL_NO_DOCKER: true
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 steps:
   - script: |
       bb stack:sync
     displayName: 'Sync with remote'
+
+  - task: Cache@2
+    inputs:
+      key: 'yarn | "$(Agent.OS)" | infra/yarn.lock'
+      restoreKeys: |
+        yarn | "$(Agent.OS)"
+      path: $(YARN_CACHE_FOLDER)
+    displayName: Cache Yarn packages
+
+  - script: |
+      cd infra && yarn --frozen-lockfile
 
   - script: |
       bb stack:compile
@@ -24,3 +36,7 @@ steps:
   - script: |
       bb native:executable
     displayName: 'GraalVM native image compile'
+
+  # - script: |
+  #     cd infra && cdk deploy
+  #   displayName: 'CDK deploy'
