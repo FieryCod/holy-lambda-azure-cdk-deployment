@@ -12,7 +12,7 @@ export class InfraStack extends cdk.Stack {
     const handler = new lambda.Function(this, "HLCDKExampleLambda", {
       runtime: lambda.Runtime.PROVIDED,
       code: lambda.Code.fromAsset('../.holy-lambda/build/latest.zip'),
-      handler: "cdk-example.core.ExampleLambda",
+      handler: "cdk-azure-pipelines.core.ExampleLambda",
       environment: {
         BUCKET: bucket.bucketName
       }

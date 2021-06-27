@@ -28,15 +28,16 @@ steps:
 
   - script: |
       cd infra && yarn --frozen-lockfile
+    displayName: 'Install all CDK deps'
 
   - script: |
       bb stack:compile
-    displayName: 'Compile'
+    displayName: 'Compile project into uberjar'
 
   - script: |
       bb native:executable
     displayName: 'GraalVM native image compile'
 
-  # - script: |
-  #     cd infra && cdk deploy
-  #   displayName: 'CDK deploy'
+  - script: |
+      cd infra && cdk deploy
+    displayName: 'CDK deploy'
