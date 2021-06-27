@@ -18,6 +18,9 @@ steps:
     displayName: 'Sync with remote'
 
   - script: |
-      bb native:executable
+      bb stack:compile
+    displayName: 'Compile'
 
-    displayName: 'Create an artifact to deploy'
+  - script: |
+      bb native:executable
+    displayName: 'GraalVM native image compile'
