@@ -9,6 +9,9 @@ trigger:
 pool:
   name: Default
 
+variables:
+  HL_NO_DOCKER: true
+
 steps:
   - script: |
       bb stack:sync
